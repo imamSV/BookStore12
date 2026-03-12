@@ -1,0 +1,62 @@
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: #f5f7fb;
+    margin: 0;
+}
+
+header {
+    background: #2a2f4a;
+    padding: 16px 30px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+header a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+header a:hover {
+    opacity: 0.8;
+}
+
+main {
+    max-width: 1000px;
+    margin: 30px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.book-card {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.button {
+    background: #2a2f4a;
+    color: white;
+    padding: 7px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.button:hover {
+    background: #444b78;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 10px;
+}
+
+tr:nth-child(even) {
+    background: #f7f7f7;
+}

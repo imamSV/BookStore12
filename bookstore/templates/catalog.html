@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Каталог книг</h1>
+
+{% for book in books %}
+<div class="book-card">
+
+<strong>{{ book.title }}</strong><br>
+Автор: {{ book.author }} <br>
+Рейтинг: {{ "%.1f"|format(book.rating or 0) }} ⭐
+
+<br><br>
+
+<a href="{{ url_for('catalog.book_detail', book_id=book.id) }}" class="button">
+Подробнее
+</a>
+
+<a href="{{ url_for('cart.add_to_cart', book_id=book.id) }}" class="button">
+В корзину
+</a>
+
+</div>
+{% endfor %}
+
+{% endblock %}

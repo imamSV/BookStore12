@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>ТОП-3 книги недели</h1>
+
+<div class="top-books">
+
+{% for book in top_books %}
+
+<div class="book-card">
+
+<img src="{{ book.cover_url }}" width="120">
+
+<h3>{{ book.title }}</h3>
+
+<p>{{ book.author }}</p>
+
+<p>{{ book.rating or 0 }} ⭐</p>
+
+<a href="{{ url_for('catalog.book_detail', book_id=book.id) }}" class="button">
+Подробнее
+</a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+
+<h2>Жанры</h2>
+
+<ul>
+
+{% for genre in genres %}
+
+<li>
+
+<a href="{{ url_for('catalog.genre', genre_id=genre.id) }}">
+{{ genre.name }}
+</a>
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+
+<h2>Поиск</h2>
+
+<form method="GET">
+
+<input type="text" name="search" placeholder="Название книги">
+
+<button>Найти</button>
+
+</form>
+
+{% endblock %}

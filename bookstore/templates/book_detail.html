@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>{{ book.title }}</h1>
+
+<img src="{{ book.cover_url }}" width="200">
+
+<p><b>Автор:</b> {{ book.author }}</p>
+
+<p><b>Год:</b> {{ book.year }}</p>
+
+<p><b>Цена:</b> {{ book.price }} ₽</p>
+
+<p>{{ book.description }}</p>
+
+<p><b>Рейтинг:</b> {{ book.rating or 0 }} ⭐</p>
+
+<br>
+
+<a href="{{ url_for('cart.add_to_cart', book_id=book.id) }}" class="button">
+Добавить в корзину
+</a>
+
+{% if current_user.is_authenticated %}
+
+<a href="{{ url_for('reviews.add_review', book_id=book.id) }}" class="button">
+Оставить отзыв
+</a>
+
+{% endif %}
+
+{% endblock %}
