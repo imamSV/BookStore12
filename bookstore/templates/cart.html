@@ -1,13 +1,17 @@
 {% extends "base.html" %}
+
 {% block title %}Корзина{% endblock %}
+
 {% block content %}
+
 <h1>Корзина</h1>
+
+{% if items %}
 
 <table>
 
 <tr>
 <th>Книга</th>
-<th>Цена</th>
 <th>Количество</th>
 <th></th>
 </tr>
@@ -17,13 +21,15 @@
 <tr>
 
 <td>{{ item.book.title }}</td>
-<td>{{ item.book.price }}</td>
+
 <td>{{ item.quantity }}</td>
 
 <td>
-<a href="{{ url_for('cart.remove_from_cart', item_id=item.id) }}">
-Удалить
-</a>
+
+<form action="{{ url_for('cart.remove_from_cart', item_id=item.id) }}" method="POST">
+<button class="btn">Удалить</button>
+</form>
+
 </td>
 
 </tr>
@@ -32,10 +38,10 @@
 
 </table>
 
-<h3>Итого: {{ total }}</h3>
+<br>
+<a href="{{ url_for('orders.checkout') }}" class="btn">Оформить заказ</a>
 
-<a href="{{ url_for('orders.checkout') }}" class="button">
-Оформить заказ
-</a>
-
-{% endblock %}}
+{% else %}
+<p>Корзина пуста</p>
+{% endif %}
+{% endblock %}

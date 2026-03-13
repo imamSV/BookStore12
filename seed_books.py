@@ -5,7 +5,6 @@ from bookstore.models import Book, Genre
 app = create_app()
 
 with app.app_context():
-    # путь к JSON с книгами
     with open("data/books_catalog.json", "r", encoding="utf-8") as f:
         books = json.load(f)
 

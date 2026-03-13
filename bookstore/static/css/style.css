@@ -1,62 +1,75 @@
-body {
-    font-family: "Segoe UI", sans-serif;
-    background: #f5f7fb;
-    margin: 0;
+body{
+font-family: Arial, sans-serif;
+background:#f4f6f9;
+margin:0;
 }
 
-header {
-    background: #2a2f4a;
-    padding: 16px 30px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
+.nav{
+background:#2c3e50;
+padding:15px;
 }
 
-header a {
-    color: white;
-    margin-left: 20px;
-    text-decoration: none;
+.nav a{
+color:white;
+margin-right:20px;
+text-decoration:none;
+font-weight:bold;
 }
 
-header a:hover {
-    opacity: 0.8;
+.container{
+width:900px;
+margin:auto;
+padding:30px;
+background:white;
+margin-top:30px;
+border-radius:8px;
 }
 
-main {
-    max-width: 1000px;
-    margin: 30px auto;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
+.books{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
 }
 
-.book-card {
-    border-bottom: 1px solid #eee;
-    padding: 15px 0;
+.book-card{
+border:1px solid #ddd;
+padding:15px;
+border-radius:8px;
+text-align:center;
+background:#fafafa;
 }
 
-.button {
-    background: #2a2f4a;
-    color: white;
-    padding: 7px 14px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 14px;
+.cover{
+width:120px;
+height:180px;
+object-fit:cover;
 }
 
-.button:hover {
-    background: #444b78;
+.price{
+font-weight:bold;
+margin:10px 0;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+.btn{
+background:#3498db;
+color:white;
+border:none;
+padding:8px 15px;
+border-radius:5px;
+cursor:pointer;
 }
 
-td, th {
-    padding: 10px;
+.btn:hover{
+background:#2980b9;
 }
 
-tr:nth-child(even) {
-    background: #f7f7f7;
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+table td, table th{
+border-bottom:1px solid #ddd;
+padding:10px;
+text-align:left;
 }

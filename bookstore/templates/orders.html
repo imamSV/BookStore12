@@ -1,14 +1,25 @@
 {% extends "base.html" %}
-{% block title %}Заказы{% endblock %}
+{% block title %}Ваши заказы{% endblock %}
 {% block content %}
+
 <h1>Ваши заказы</h1>
+
 {% if orders %}
-<ul>
+    <ul>
     {% for order in orders %}
-    <li>Заказ #{{ order.id }} — {{ order.created_at.strftime("%d.%m.%Y") }}</li>
+        <li>
+            Заказ #{{ order.id }} — {{ order.created_at.strftime("%d.%m.%Y") }}
+            <ul>
+                {% for item in order.items %}
+                    <li>{{ item.book.title }} — {{ item.quantity }} шт. — {{ item.price_at_purchase }} ₽</li>
+                {% endfor %}
+            </ul>
+            Статус: {{ order.status }}, Доставка: {{ order.delivery_type }}, Адрес: {{ order.address or "самовывоз" }}
+        </li>
     {% endfor %}
-</ul>
+    </ul>
 {% else %}
-<p>Заказов пока нет.</p>
+    <p>Заказов пока нет.</p>
 {% endif %}
+
 {% endblock %}

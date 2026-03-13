@@ -21,11 +21,10 @@ class User(db.Model, UserMixin):
     phone = db.Column(db.String(20))
     password_hash = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    cart_items = db.relationship("CartItem", backref="user", lazy=True)
+    cart_items = db.relationship("CartItem", backref="cart_items")
     orders = db.relationship("Order", backref="user", lazy=True)
     reviews = db.relationship("Review", backref="user", lazy=True)
 
-    # 🔹 методы для работы с паролем
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
@@ -58,6 +57,7 @@ class Book(db.Model):
 
 
 class CartItem(db.Model):
+
     id = db.Column(db.Integer, primary_key=True)
 
     user_id = db.Column(
@@ -70,7 +70,9 @@ class CartItem(db.Model):
         db.Integer,
         db.ForeignKey("book.id")
     )
+
     quantity = db.Column(db.Integer, default=1)
+
     book = db.relationship("Book")
 
 class Order(db.Model):

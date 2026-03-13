@@ -1,19 +1,33 @@
 {% extends "base.html" %}
-
+{% block title %}Оформление заказа{% endblock %}
 {% block content %}
 
 <h1>Оформление заказа</h1>
 
+{% if cart_items %}
 <form method="POST">
+    <p>Вы выбрали {{ cart_items|length }} товаров:</p>
+    <ul>
+    {% for item in cart_items %}
+        <li>{{ item.book.title }} — {{ item.quantity }} шт.</li>
+    {% endfor %}
+    </ul>
 
-<label>Адрес доставки</label>
+    <label>Тип доставки:</label>
+    <select name="delivery_type">
+        <option value="pickup">Самовывоз</option>
+        <option value="delivery">Доставка</option>
+    </select>
+    <br>
 
-<input name="address">
+    <label>Адрес (только для доставки):</label>
+    <input type="text" name="address">
+    <br><br>
 
-<br><br>
-
-<button>Подтвердить заказ</button>
-
+    <button type="submit">Оформить заказ</button>
 </form>
+{% else %}
+<p>Корзина пуста.</p>
+{% endif %}
 
 {% endblock %}
