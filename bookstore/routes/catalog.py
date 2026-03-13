@@ -5,7 +5,7 @@ from bookstore.models import Genre
 catalog_bp = Blueprint("catalog", __name__)
 
 @catalog_bp.route("/catalog")
-def catalog_index():  # Имя функции для url_for
+def catalog_index():
     books = Book.query.order_by(Book.title).all()
     return render_template("catalog.html", books=books)
 
