@@ -15,21 +15,18 @@
 </a>
 
 <h3>{{ book.title }}</h3>
-
 <p>{{ book.author }}</p>
-
 <p class="price">{{ book.price }} ₽</p>
 
 <form action="{{ url_for('cart.add_to_cart', book_id=book.id) }}" method="POST">
-<button type="submit" class="btn">В корзину</button>
+    <button type="submit" class="btn">В корзину</button>
 </form>
 
 <a class="details" href="{{ url_for('catalog.book_detail', book_id=book.id) }}">
 Подробнее
 </a>
-<form action="{{ url_for('cart.add_to_cart', book_id=book.id) }}" method="POST" onclick="event.stopPropagation();">
-</div>
 
+</div>
 {% endfor %}
 
 </div>

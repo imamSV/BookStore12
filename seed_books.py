@@ -21,7 +21,7 @@ with app.app_context():
             year=b.get("year"),
             price=b.get("price"),
             description=b.get("description"),
-            cover_url=b.get("cover_url"),
+            cover_url=b.get("cover"),
             rating=b.get("rating")
         )
 

@@ -12,6 +12,15 @@ def add_review(book_id):
     rating = int(request.form["rating"])
     text = request.form["text"]
 
+    existing_review = Review.query.filter_by(
+        user_id=current_user.id,
+        book_id=book_id
+    ).first()
+
+    if existing_review:
+        flash("Вы уже оставили отзыв на эту книгу")
+        return redirect(url_for("catalog.book_detail", book_id=book_id))
+
     review = Review(
         user_id=current_user.id,
         book_id=book_id,
@@ -29,7 +38,9 @@ def add_review(book_id):
         book.rating = 0
 
     book.rating_count += 1
-    book.rating = ((book.rating * (book.rating_count - 1)) + rating) / book.rating_count
+    book.rating = (
+        (book.rating * (book.rating_count - 1)) + rating
+    ) / book.rating_count
 
     db.session.commit()
 

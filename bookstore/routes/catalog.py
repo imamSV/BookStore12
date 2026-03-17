@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 from bookstore.models import Book
 from bookstore.models import Genre
 
@@ -6,7 +6,13 @@ catalog_bp = Blueprint("catalog", __name__)
 
 @catalog_bp.route("/catalog")
 def catalog_index():
-    books = Book.query.order_by(Book.title).all()
+    search = request.args.get("search")
+    if search:
+        books = Book.query.filter(
+            Book.title.ilike(f"%{search}%")
+        ).all()
+    else:
+        books = Book.query.order_by(Book.title).all()
     return render_template("catalog.html", books=books)
 
 @catalog_bp.route("/book/<int:book_id>")
