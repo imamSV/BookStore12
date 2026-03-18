@@ -50,12 +50,9 @@
 
 <h2>Поиск</h2>
 
-<form method="GET">
-
-<input type="text" name="search" placeholder="Название книги">
-
-<button>Найти</button>
-
+<form method="GET" action="{{ url_for('catalog.catalog_index') }}">
+    <input type="text" name="search" placeholder="Поиск книг">
+    <button type="submit">Найти</button>
 </form>
 
 {% endblock %}

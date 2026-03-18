@@ -6,14 +6,17 @@ catalog_bp = Blueprint("catalog", __name__)
 
 @catalog_bp.route("/catalog")
 def catalog_index():
-    search = request.args.get("search")
+    search = request.args.get("search", "").strip()
+
     if search:
         books = Book.query.filter(
-            Book.title.ilike(f"%{search}%")
+            Book.title.ilike(f"%{search}%") |
+            Book.author.ilike(f"%{search}%")
         ).all()
     else:
         books = Book.query.order_by(Book.title).all()
-    return render_template("catalog.html", books=books)
+
+    return render_template("catalog.html", books=books, search=search)
 
 @catalog_bp.route("/book/<int:book_id>")
 def book_detail(book_id):

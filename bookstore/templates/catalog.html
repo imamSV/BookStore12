@@ -2,7 +2,15 @@
 
 {% block content %}
 
+
 <h1>Каталог книг</h1>
+<form method="GET" action="{{ url_for('catalog.catalog_index') }}">
+    <input type="text" name="search" placeholder="Поиск книг" value="{{ search }}">
+    <button type="submit">Найти</button>
+</form>
+{% if books|length == 0 %}
+<p>Ничего не найдено</p>
+{% endif %}
 
 <div class="books">
 
